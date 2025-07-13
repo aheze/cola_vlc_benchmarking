@@ -1,0 +1,55 @@
+{
+    "task_id": "coin_detection",
+    "name": "Coin Detection with Canny Edge + Hough Transform",
+    "prompt": "prompt.md",
+    "description": "Detect all coins in the provided historical coin collection image using Canny edge detection and Hough circle transform.",
+    "difficulty": "easy",
+    "category": "object_detection",
+    "input_files": [
+        "three-centuries-of-american-coins_TCO_a_Main.jpg"
+    ],
+    "expected_outputs": {
+        "solution_file": "solution.json",
+        "format": "json",
+        "sample": {
+            "coins": [
+              {
+                "x": 122,
+                "y": 112,
+                "radius": 111
+              },
+              {
+                "x": 396,
+                "y": 402,
+                "radius": 100
+              },
+              {
+                "x": 212,
+                "y": 416,
+                "radius": 80
+              },
+              {
+                "x": 92,
+                "y": 302,
+                "radius": 75
+              },
+              {
+                "x": 426,
+                "y": 70,
+                "radius": 57
+              },
+              {
+                "x": 328,
+                "y": 206,
+                "radius": 109
+              }
+            ]
+          }
+    },
+    "evaluation_criteria": {
+        "exact_count": true,
+        "position_tolerance": 10,
+        "radius_tolerance": 0.15
+    },
+    "timeout_seconds": 300
+}

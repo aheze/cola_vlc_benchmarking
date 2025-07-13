@@ -1,0 +1,25 @@
+{
+    "task_id": "homography_estimation",
+    "name": "Homography Estimation for Image Stitching",
+    "prompt": "prompt.md",
+    "description": "Estimate homography transformations to stitch multiple images into a panorama using feature matching and RANSAC.",
+    "difficulty": "medium",
+    "category": "computer_vision",
+    "input_files": [
+        "MelakwaLake1.png",
+        "MelakwaLake2.png", 
+        "MelakwaLake3.png",
+        "MelakwaLake4.png"
+    ],
+    "expected_outputs": {
+        "solution_file": "solution_panorama.png",
+        "format": "image",
+        "ground_truth_file": "melakwa_lake_panorama_gt.png"
+    },
+    "evaluation_criteria": {
+        "lpips_threshold": 0.3,
+        "clip_threshold": 0.95,
+        "require_both_metrics": true
+    },
+    "timeout_seconds": 600
+} 
