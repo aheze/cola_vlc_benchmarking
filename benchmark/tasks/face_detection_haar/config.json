@@ -1,0 +1,19 @@
+{
+    "task_id": "face_detection_haar",
+    "name": "haar_face_detection",
+    "prompt": "prompt.md",
+    "description": "Use haar cascades to detect faces in multiple test images.",
+    "difficulty": "medium",
+    "category": "computer_vision",
+    "input_files": [],
+    "expected_outputs": {
+        "solution_file": "solution.json",
+        "format": "json",
+        "ground_truth_file": "ground_truth.json"
+    },
+    "evaluation_criteria": {
+        "iou_threshold": 0.4,
+        "f1_threshold": 0.8
+    },
+    "timeout_seconds": 600
+} 

@@ -1,0 +1,161 @@
+[
+{
+    "image_path": "face_test_1.jpg",
+    "image_dimensions": {
+      "width": 683,
+      "height": 630,
+      "channels": 3
+    },
+    "total_faces": 3,
+    "faces": [
+      {
+        "face_id": 1,
+        "bounding_box": {
+          "x": 48,
+          "y": 115,
+          "width": 69,
+          "height": 69
+        },
+        "center": {
+          "x": 82,
+          "y": 149
+        },
+        "area": 4761
+      },
+      {
+        "face_id": 2,
+        "bounding_box": {
+          "x": 152,
+          "y": 182,
+          "width": 71,
+          "height": 71
+        },
+        "center": {
+          "x": 187,
+          "y": 217
+        },
+        "area": 5041
+      },
+      {
+        "face_id": 3,
+        "bounding_box": {
+          "x": 350,
+          "y": 128,
+          "width": 95,
+          "height": 95
+        },
+        "center": {
+          "x": 397,
+          "y": 175
+        },
+        "area": 9025
+      }
+    ]
+},
+{
+  "image_path": "face_test_2.jpg",
+  "image_dimensions": {
+    "width": 2000,
+    "height": 1333,
+    "channels": 3
+  },
+  "total_faces": 4,
+  "faces": [
+    {
+      "face_id": 1,
+      "bounding_box": {
+        "x": 400,
+        "y": 123,
+        "width": 124,
+        "height": 168
+      },
+      "center": {
+        "x": 462,
+        "y": 207
+      },
+      "area": 20867
+    },
+    {
+      "face_id": 2,
+      "bounding_box": {
+        "x": 694,
+        "y": 107,
+        "width": 128,
+        "height": 170
+      },
+      "center": {
+        "x": 758,
+        "y": 192
+      },
+      "area": 21688
+    },
+    {
+      "face_id": 3,
+      "bounding_box": {
+        "x": 1062,
+        "y": 122,
+        "width": 126,
+        "height": 130
+      },
+      "center": {
+        "x": 1125,
+        "y": 187
+      },
+      "area": 16296
+    },
+    {
+      "face_id": 4,
+      "bounding_box": {
+        "x": 1578,
+        "y": 149,
+        "width": 117,
+        "height": 142
+      },
+      "center": {
+        "x": 1637,
+        "y": 220
+      },
+      "area": 16563
+    }
+  ]
+},
+{
+  "image_path": "face_test_3.jpg",
+  "image_dimensions": {
+    "width": 1500,
+    "height": 1000,
+    "channels": 3
+  },
+  "total_faces": 2,
+  "faces": [
+    {
+      "face_id": 1,
+      "bounding_box": {
+        "x": 548,
+        "y": 118,
+        "width": 209,
+        "height": 243
+      },
+      "center": {
+        "x": 653,
+        "y": 239
+      },
+      "area": 50627
+    },
+    {
+      "face_id": 2,
+      "bounding_box": {
+        "x": 939,
+        "y": 223,
+        "width": 193,
+        "height": 200
+      },
+      "center": {
+        "x": 1036,
+        "y": 323
+      },
+      "area": 38730
+    }
+  ]
+}
+]

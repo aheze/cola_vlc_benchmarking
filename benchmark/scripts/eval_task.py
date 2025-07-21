@@ -9,6 +9,7 @@ import json
 # Explicitly import all task modules to ensure registration
 from benchmark.tasks.coin_detection.evaluator import CoinDetectionEvaluator
 from benchmark.tasks.homography_estimation.evaluator import HomographyEstimationEvaluator
+from benchmark.tasks.face_detection_haar.evaluator import FaceDetectionEvaluator
 
 def main():
     parser = argparse.ArgumentParser(description="Run a vision coding agent benchmark task.")
@@ -35,6 +36,9 @@ def main():
         result = evaluator.evaluate(args.solution_path)
     elif args.task == "homography_estimation":
         evaluator = HomographyEstimationEvaluator(config)
+        result = evaluator.evaluate(args.solution_path)
+    elif args.task == "face_detection_haar":
+        evaluator = FaceDetectionEvaluator(config)
         result = evaluator.evaluate(args.solution_path)
     else:
         print("No evaluator implemented for this task.")
