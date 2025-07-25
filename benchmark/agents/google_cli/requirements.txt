@@ -1,0 +1,9 @@
+# Requirements for Google CLI Agent
+# Most dependencies should already be available in the base environment
+
+# Core dependencies (likely already installed)
+opencv-python>=4.5.0
+numpy>=1.20.0
+pathlib2>=2.3.0  # For older Python versions compatibility
+
+# No additional dependencies required - uses subprocess to call Gemini CLI
