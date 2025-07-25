@@ -270,18 +270,65 @@ Provide the complete Python code wrapped in ```python code blocks.
         timeout = self.hyperparameters.get("timeout", 300)
         
         try:
-            # Run gemini CLI with the prompt using -p flag
-            result = subprocess.run(
-                ['gemini', '-p', prompt],
-                capture_output=True,
-                text=True,
-                timeout=timeout
-            )
+            # Create a temporary file for the prompt to handle long prompts
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
+                f.write(prompt)
+                prompt_file = f.name
             
-            if result.returncode != 0:
-                raise RuntimeError(f"Gemini CLI failed with return code {result.returncode}: {result.stderr}")
-            
-            return result.stdout.strip()
+            try:
+                print(f"\n🤖 Calling Gemini CLI...")
+                print(f"📝 Prompt length: {len(prompt)} characters")
+                print("=" * 60)
+                
+                # Use Popen to stream output in real-time
+                # Read the prompt from file and pass it via -p flag
+                with open(prompt_file, 'r') as f:
+                    prompt_content = f.read()
+                
+                process = subprocess.Popen(
+                    ['gemini', '-p', prompt_content],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    bufsize=1,
+                    universal_newlines=True
+                )
+                
+                # Collect output while streaming to terminal
+                output_lines = []
+                try:
+                    if process.stdout:
+                        while True:
+                            line = process.stdout.readline()
+                            if not line:
+                                break
+                            print(line.rstrip())  # Print to terminal in real-time
+                            output_lines.append(line)
+                    
+                    # Wait for process to complete
+                    return_code = process.wait(timeout=timeout)
+                    
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                    raise RuntimeError(f"Gemini CLI timed out after {timeout} seconds")
+                
+                output = ''.join(output_lines)
+                
+                print("=" * 60)
+                print(f"✅ Gemini CLI completed with return code: {return_code}")
+                
+                if return_code != 0:
+                    print(f"❌ Error output: {output}")
+                    raise RuntimeError(f"Gemini CLI failed with return code {return_code}: {output}")
+                
+                return output.strip()
+                
+            finally:
+                # Clean up the temporary prompt file
+                try:
+                    os.unlink(prompt_file)
+                except:
+                    pass
                 
         except subprocess.TimeoutExpired:
             raise RuntimeError(f"Gemini CLI timed out after {timeout} seconds")

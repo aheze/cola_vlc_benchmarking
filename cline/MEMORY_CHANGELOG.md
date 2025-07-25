@@ -43,5 +43,17 @@ export GEMINI_API_KEY=<your_key>
 python3 run.py --task face_detection_haar --workspace ./workspace --verbose
 ```
 
-### Status: READY FOR TEAM REVIEW
-The Google CLI agent is fully functional and ready for integration with the main benchmark system.
+### Recent Improvements
+- ✅ **FIXED** Real-time output streaming from Gemini CLI
+- ✅ **FIXED** Corrected CLI flag from `-f` to `-p` for prompt input
+- ✅ **ENHANCED** Added visual indicators and progress tracking
+- ✅ **VERIFIED** Full end-to-end execution with face detection task
+
+### Key Features
+- **Real-time visibility**: See Gemini's responses as they stream
+- **Error transparency**: All CLI errors and warnings are visible
+- **Progress tracking**: Clear indicators for each step of execution
+- **Robust error handling**: Graceful handling of CLI failures
+
+### Status: PRODUCTION READY
+The Google CLI agent now provides full visibility into Gemini CLI execution and is ready for production use.
