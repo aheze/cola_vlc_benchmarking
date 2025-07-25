@@ -1,1 +1,329 @@
-[]
+[
+  {
+    "image_path": "face_test_1.jpg",
+    "image_dimensions": {
+      "width": 683,
+      "height": 630,
+      "channels": 3
+    },
+    "total_faces": 3,
+    "faces": [
+      {
+        "face_id": 1,
+        "bounding_box": {
+          "x": 47,
+          "y": 114,
+          "width": 70,
+          "height": 70
+        },
+        "center": {
+          "x": 82,
+          "y": 149
+        },
+        "area": 4900
+      },
+      {
+        "face_id": 2,
+        "bounding_box": {
+          "x": 515,
+          "y": 307,
+          "width": 65,
+          "height": 65
+        },
+        "center": {
+          "x": 547,
+          "y": 339
+        },
+        "area": 4225
+      },
+      {
+        "face_id": 3,
+        "bounding_box": {
+          "x": 153,
+          "y": 181,
+          "width": 71,
+          "height": 71
+        },
+        "center": {
+          "x": 188,
+          "y": 216
+        },
+        "area": 5041
+      }
+    ]
+  },
+  {
+    "image_path": "face_test_2.jpg",
+    "image_dimensions": {
+      "width": 2000,
+      "height": 1333,
+      "channels": 3
+    },
+    "total_faces": 16,
+    "faces": [
+      {
+        "face_id": 1,
+        "bounding_box": {
+          "x": 49,
+          "y": 44,
+          "width": 116,
+          "height": 116
+        },
+        "center": {
+          "x": 107,
+          "y": 102
+        },
+        "area": 13456
+      },
+      {
+        "face_id": 2,
+        "bounding_box": {
+          "x": 727,
+          "y": 123,
+          "width": 120,
+          "height": 120
+        },
+        "center": {
+          "x": 787,
+          "y": 183
+        },
+        "area": 14400
+      },
+      {
+        "face_id": 3,
+        "bounding_box": {
+          "x": 1078,
+          "y": 102,
+          "width": 129,
+          "height": 129
+        },
+        "center": {
+          "x": 1142,
+          "y": 166
+        },
+        "area": 16641
+      },
+      {
+        "face_id": 4,
+        "bounding_box": {
+          "x": 732,
+          "y": 298,
+          "width": 133,
+          "height": 133
+        },
+        "center": {
+          "x": 798,
+          "y": 364
+        },
+        "area": 17689
+      },
+      {
+        "face_id": 5,
+        "bounding_box": {
+          "x": 1560,
+          "y": 151,
+          "width": 118,
+          "height": 118
+        },
+        "center": {
+          "x": 1619,
+          "y": 210
+        },
+        "area": 13924
+      },
+      {
+        "face_id": 6,
+        "bounding_box": {
+          "x": 390,
+          "y": 155,
+          "width": 130,
+          "height": 130
+        },
+        "center": {
+          "x": 455,
+          "y": 220
+        },
+        "area": 16900
+      },
+      {
+        "face_id": 7,
+        "bounding_box": {
+          "x": 706,
+          "y": 543,
+          "width": 54,
+          "height": 54
+        },
+        "center": {
+          "x": 733,
+          "y": 570
+        },
+        "area": 2916
+      },
+      {
+        "face_id": 8,
+        "bounding_box": {
+          "x": 1876,
+          "y": 369,
+          "width": 106,
+          "height": 106
+        },
+        "center": {
+          "x": 1929,
+          "y": 422
+        },
+        "area": 11236
+      },
+      {
+        "face_id": 9,
+        "bounding_box": {
+          "x": 971,
+          "y": 791,
+          "width": 49,
+          "height": 49
+        },
+        "center": {
+          "x": 995,
+          "y": 815
+        },
+        "area": 2401
+      },
+      {
+        "face_id": 10,
+        "bounding_box": {
+          "x": 623,
+          "y": 834,
+          "width": 53,
+          "height": 53
+        },
+        "center": {
+          "x": 649,
+          "y": 860
+        },
+        "area": 2809
+      },
+      {
+        "face_id": 11,
+        "bounding_box": {
+          "x": 527,
+          "y": 1180,
+          "width": 34,
+          "height": 34
+        },
+        "center": {
+          "x": 544,
+          "y": 1197
+        },
+        "area": 1156
+      },
+      {
+        "face_id": 12,
+        "bounding_box": {
+          "x": 1691,
+          "y": 1099,
+          "width": 61,
+          "height": 61
+        },
+        "center": {
+          "x": 1721,
+          "y": 1129
+        },
+        "area": 3721
+      },
+      {
+        "face_id": 13,
+        "bounding_box": {
+          "x": 1247,
+          "y": 1084,
+          "width": 76,
+          "height": 76
+        },
+        "center": {
+          "x": 1285,
+          "y": 1122
+        },
+        "area": 5776
+      },
+      {
+        "face_id": 14,
+        "bounding_box": {
+          "x": 1447,
+          "y": 1059,
+          "width": 68,
+          "height": 68
+        },
+        "center": {
+          "x": 1481,
+          "y": 1093
+        },
+        "area": 4624
+      },
+      {
+        "face_id": 15,
+        "bounding_box": {
+          "x": 334,
+          "y": 1154,
+          "width": 61,
+          "height": 61
+        },
+        "center": {
+          "x": 364,
+          "y": 1184
+        },
+        "area": 3721
+      },
+      {
+        "face_id": 16,
+        "bounding_box": {
+          "x": 832,
+          "y": 1089,
+          "width": 98,
+          "height": 98
+        },
+        "center": {
+          "x": 881,
+          "y": 1138
+        },
+        "area": 9604
+      }
+    ]
+  },
+  {
+    "image_path": "face_test_3.jpg",
+    "image_dimensions": {
+      "width": 1500,
+      "height": 1000,
+      "channels": 3
+    },
+    "total_faces": 2,
+    "faces": [
+      {
+        "face_id": 1,
+        "bounding_box": {
+          "x": 553,
+          "y": 117,
+          "width": 226,
+          "height": 226
+        },
+        "center": {
+          "x": 666,
+          "y": 230
+        },
+        "area": 51076
+      },
+      {
+        "face_id": 2,
+        "bounding_box": {
+          "x": 940,
+          "y": 209,
+          "width": 178,
+          "height": 178
+        },
+        "center": {
+          "x": 1029,
+          "y": 298
+        },
+        "area": 31684
+      }
+    ]
+  }
+]

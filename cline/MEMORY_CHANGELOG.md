@@ -55,5 +55,14 @@ python3 run.py --task face_detection_haar --workspace ./workspace --verbose
 - **Progress tracking**: Clear indicators for each step of execution
 - **Robust error handling**: Graceful handling of CLI failures
 
+### Recent Bug Fix: Input Directory Path Issue
+- ✅ **FIXED** Google CLI agent was looking for input files in wrong directory
+- **Problem**: Agent searched for input files in workspace/input instead of benchmark/tasks/{task_name}/input
+- **Solution**: Modified agent to accept task_name parameter and correctly locate task input directory
+- **Files Updated**: 
+  - `google_cli_agent.py`: Added task_name parameter to run_task() and enhanced prompt with correct input path
+  - `run.py`: Fixed typo (run_tasek → run_task) and pass task_name to agent
+- **Verification**: Successfully tested with face_detection_haar task - now finds all 3 input images and generates proper face detection results
+
 ### Status: PRODUCTION READY
-The Google CLI agent now provides full visibility into Gemini CLI execution and is ready for production use.
+The Google CLI agent now provides full visibility into Gemini CLI execution and correctly locates input files for tasks.

@@ -87,7 +87,7 @@ def main():
         
         # Run the task
         print("Running task...")
-        result = agent.run_task(prompt, workspace_path)
+        result = agent.run_task(prompt, workspace_path, task_name=args.task)
         
         # Print results
         print("\n" + "="*50)

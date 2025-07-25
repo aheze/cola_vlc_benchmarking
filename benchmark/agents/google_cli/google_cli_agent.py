@@ -38,7 +38,7 @@ class GoogleCLIAgent(BaseAgent):
         if config and "hyperparameters" in config:
             self.hyperparameters.update(config["hyperparameters"])
     
-    def run_task(self, prompt: str, path: str, tools: Optional[List[str]] = None) -> Any:
+    def run_task(self, prompt: str, path: str, tools: Optional[List[str]] = None, task_name: Optional[str] = None) -> Any:
         """
         Run the agent with the given prompt in the specified directory.
         
@@ -46,6 +46,7 @@ class GoogleCLIAgent(BaseAgent):
             prompt: The task prompt/instruction
             path: The working directory path for the task
             tools: Optional list of specific tools to use for this task
+            task_name: Optional task name to locate input files
             
         Returns:
             Dict: The result of running the task
@@ -70,7 +71,7 @@ class GoogleCLIAgent(BaseAgent):
             
             try:
                 # Run the task using Gemini CLI
-                result = self._run_gemini_task(prompt, path)
+                result = self._run_gemini_task(prompt, path, task_name)
                 
                 self.log_token("task_complete", {
                     "success": True,
@@ -95,19 +96,20 @@ class GoogleCLIAgent(BaseAgent):
                 "output": None
             }
     
-    def _run_gemini_task(self, prompt: str, workspace_path: str) -> Dict[str, Any]:
+    def _run_gemini_task(self, prompt: str, workspace_path: str, task_name: Optional[str] = None) -> Dict[str, Any]:
         """
         Execute the task using Gemini CLI with iterative refinement.
         
         Args:
             prompt: The task prompt
             workspace_path: Path to the workspace directory
+            task_name: Optional task name to locate input files
             
         Returns:
             Dict containing the task result
         """
         # Enhanced prompt with specific instructions for code generation
-        enhanced_prompt = self._create_enhanced_prompt(prompt, workspace_path)
+        enhanced_prompt = self._create_enhanced_prompt(prompt, workspace_path, task_name)
         
         max_iterations = self.hyperparameters.get("max_iterations", 5)
         
@@ -170,13 +172,14 @@ class GoogleCLIAgent(BaseAgent):
             "error": "Maximum iterations reached without success"
         }
     
-    def _create_enhanced_prompt(self, original_prompt: str, workspace_path: str) -> str:
+    def _create_enhanced_prompt(self, original_prompt: str, workspace_path: str, task_name: Optional[str] = None) -> str:
         """
         Create an enhanced prompt with additional context and instructions.
         
         Args:
             original_prompt: The original task prompt
             workspace_path: Path to the workspace directory
+            task_name: Optional task name to locate input files
             
         Returns:
             Enhanced prompt string
@@ -185,14 +188,33 @@ class GoogleCLIAgent(BaseAgent):
         input_files = []
         input_dir = None
         
-        # Look for input directory in parent directories
-        current_dir = Path(workspace_path)
-        for parent in [current_dir] + list(current_dir.parents):
-            potential_input_dir = parent / "input"
-            if potential_input_dir.exists():
-                input_dir = potential_input_dir
-                input_files = [f.name for f in potential_input_dir.iterdir() if f.is_file()]
-                break
+        # If task_name is provided, look for input files in the task directory
+        if task_name:
+            # Find the project root and look for task input directory
+            current_dir = Path(workspace_path)
+            project_root = None
+            
+            # Look for benchmark directory in parent directories
+            for parent in [current_dir] + list(current_dir.parents):
+                if (parent / "benchmark").exists():
+                    project_root = parent
+                    break
+            
+            if project_root:
+                task_input_dir = project_root / "benchmark" / "tasks" / task_name / "input"
+                if task_input_dir.exists():
+                    input_dir = task_input_dir
+                    input_files = [f.name for f in task_input_dir.iterdir() if f.is_file()]
+        
+        # Fallback: Look for input directory in parent directories (original behavior)
+        if not input_dir:
+            current_dir = Path(workspace_path)
+            for parent in [current_dir] + list(current_dir.parents):
+                potential_input_dir = parent / "input"
+                if potential_input_dir.exists():
+                    input_dir = potential_input_dir
+                    input_files = [f.name for f in potential_input_dir.iterdir() if f.is_file()]
+                    break
         
         enhanced_prompt = f"""
 You are a computer vision expert. Please solve the following task:
@@ -206,11 +228,15 @@ IMPORTANT INSTRUCTIONS:
 4. Save the final results in a file named 'solution.json' in the current directory
 5. Make sure to handle all edge cases and error conditions
 6. The code should be self-contained and not require user input
+7. CRITICAL: Use the exact input directory path provided below - do NOT assume it's in the current directory
 
 WORKSPACE INFORMATION:
 - Current working directory: {workspace_path}
 - Input files available: {input_files if input_files else 'None found'}
-- Input directory: {input_dir if input_dir else 'Not found'}
+- Input directory (USE THIS EXACT PATH): {input_dir if input_dir else 'Not found'}
+
+IMPORTANT: The input images are located at the path: {input_dir}
+Make sure your code uses this exact path to read the images, not a relative 'input' directory.
 
 Please provide the complete Python code to solve this task. Start your response with the Python code wrapped in ```python code blocks.
 """
@@ -278,6 +304,7 @@ Provide the complete Python code wrapped in ```python code blocks.
             try:
                 print(f"\n🤖 Calling Gemini CLI...")
                 print(f"📝 Prompt length: {len(prompt)} characters")
+                print(f"📝 Prompt: {prompt}")
                 print("=" * 60)
                 
                 # Use Popen to stream output in real-time
